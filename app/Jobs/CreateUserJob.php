@@ -27,8 +27,6 @@ class CreateUserJob implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(Request $request)
     {
@@ -40,8 +38,6 @@ class CreateUserJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -55,7 +51,7 @@ class CreateUserJob implements ShouldQueue
             $user->save();
         }else{
             //失敗
-//            throw new Exception('random int = ' . $r);
+            throw new Exception('random int = ' . $r);
         }
     }
 
