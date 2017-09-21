@@ -50,7 +50,9 @@ app/storage/
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/*.php
-storage/
+storage/framework/sessions/*
+!storage/framework/sessions/.gitignore
+storage/framework/views/*.php
 .env.*.php
 .env.php
 
