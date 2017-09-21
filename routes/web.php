@@ -17,3 +17,8 @@ Route::get('/', function () {
 
 Route::get('/users', 'UsersController@users');
 Route::post('/users', 'UsersController@add_queue');
+
+//HTTPS
+Route::group(array('https'), function(){
+    Route::post('form', array('as' => 'form/action', 'uses' => 'UsersController@add_queue'));
+});
