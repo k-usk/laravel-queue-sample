@@ -55,7 +55,7 @@ class CreateUserJob implements ShouldQueue
             $user->save();
         }else{
             //失敗
-            throw new Exception('random int = ' . $r);
+//            throw new Exception('random int = ' . $r);
         }
     }
 
