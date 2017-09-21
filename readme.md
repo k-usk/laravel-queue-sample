@@ -23,11 +23,14 @@ worker dynoにてジョブが処理されるとDBへデータが保存される�
 Worker Dynoで動作するコマンドは以下のように設定している。
 
 ```
-worker: php artisan queue:listen --sleep=60 --delay=60
+worker: php artisan queue:listen --sleep=60 --delay=60 --timeout=70
 ```
 
 * `sleep` : キューなしの場合のポーリング間隔は60秒
 * `delay` : 失敗キューをリトライするまでに60秒遅延
+* `timeout` : 処理がタイムアウトする時間。デフォルトは60
+
+`timeout`を`sleep`と`delay`で設定した時間より多くしておかないとタイムアウトエラーが出てしまうので注意。
 
 キューのリトライ回数はジョブクラス内にて設定。5回までにしている。
 
@@ -86,3 +89,34 @@ web dynoとworker dynoが常に起動した状態となるので注意。
 * 合計 = 1440h
 
 となり、無料枠を越えてしまうので注意が必要。
+
+# Deploy
+## Heroku Button
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## セットアップ
+環境変数はそのままで問題ないが、`APP_KEY`のみ、再生成しておいた方がよい。  
+Heroku CLIが入っているなら以下のコマンドで直接Herokuの環境変数に設定可能。
+
+```
+$ heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show -a {your-app-name}
+```
+
+## マイグレーション
+deployが完了後、ドキュメントルートへアクセスするとLaravelのロゴが表示されるとdeploy成功。  
+必要なユーザーとキュー失敗時に保存するテーブルをDBに作成するためにマイグレーションを行う。
+
+```
+$ heroku run 'php artisan migrate' -a {your-app-name}
+```
+
+`/users`にアクセスすると空の一覧とフォームが表示されたら成功。
+
+## Worker Dyno
+キューを実行するためにアプリのダッシュボードの、ResourcesからworkerのDynoをオンにする。  
+もしくはコマンドの場合は以下。
+
+```
+$ heroku ps:scale worker=1 -a {your-app-name}
+```
+

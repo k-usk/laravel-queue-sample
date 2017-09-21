@@ -1,0 +1,34 @@
+{
+  "name": "Laravel Queue Sample",
+  "repository": "https://github.com/k-usk/laravel-queue-sample",
+  "description": "Queue sample app by Laravel",
+  "scripts": {},
+  "env": {
+    "APP_DEBUG": "true",
+    "APP_ENV": "production",
+    "APP_KEY": {
+      "description":"Please set it yourself. Generate command [heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)]",
+      "value":"base64:GoYbzg1fCRBsZzLsaw25kb2/w6jRtsmOhYYCEByVnM4="
+    },
+    "APP_LOG": "errorlog",
+    "APP_LOG_LEVEL": "debug",
+    "APP_NAME": "",
+    "APP_URL": "",
+    "BROADCAST_DRIVER": "log",
+    "CACHE_DRIVER": "file",
+    "DB_CONNECTION": "pgsql",
+    "QUEUE_DRIVER": "redis",
+    "SESSION_DRIVER": "redis"
+  },
+  "formation": {},
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ],
+  "success_url": "/users"
+}
