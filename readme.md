@@ -99,7 +99,7 @@ web dynoとworker dynoが常に起動した状態となるので注意。
 Heroku CLIが入っているなら以下のコマンドで直接Herokuの環境変数に設定可能。
 
 ```
-$ heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show -a {your-app-name}
+$ heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show) -a {your-app-name}
 ```
 
 ## マイグレーション
