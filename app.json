@@ -12,8 +12,12 @@
     },
     "APP_LOG": "errorlog",
     "APP_LOG_LEVEL": "debug",
-    "APP_NAME": "",
-    "APP_URL": "",
+    "APP_NAME": {
+      "required":false
+    },
+    "APP_URL": {
+      "required":false
+    },
     "BROADCAST_DRIVER": "log",
     "CACHE_DRIVER": "file",
     "DB_CONNECTION": "pgsql",
