@@ -11,7 +11,7 @@
 <body>
 
 <div style="margin: 20px 0 40px 10px;">
-    {!! Form::open() !!}
+    {!! Form::open(array('url' => URL::to('/users', [], true))) !!}
     <table border="0" cellpadding="4" cellspacing="0">
         <tr>
             <td>{!! Form::label('name', '名前') !!}</td>
